@@ -143,6 +143,7 @@ SITE_ID = 1
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://my-beautiful-albums.vercel.app",
+    "https://mybeautifulalbums.vercel.app",
 ]
 
 from datetime import timedelta
