@@ -31,7 +31,10 @@ import { BASE_URL, fetchWithToken, LOGIN_URL } from "@/api/auth";
 
 export const Navbar = () => {
   const { isAuthenticated, isLoading, logout } = useAuth();
-  const [isMenuOpen, setIsMenuOpen] = useReducer((current:any) => !current, false);
+  const [isMenuOpen, setIsMenuOpen] = useReducer(
+    (current: any) => !current,
+    false,
+  );
   const router = useRouter();
   const pathname = usePathname();
   const [profile, setProfile] = useState<any>(null);
@@ -42,10 +45,7 @@ export const Navbar = () => {
     const fetchProfile = async () => {
       if (isAuthenticated && !isLoading) {
         try {
-          const data = await fetchWithToken(
-            false,
-            `${BASE_URL}/profile/`,
-          );
+          const data = await fetchWithToken(false, `${BASE_URL}/profile/`);
 
           setProfile(data);
         } catch (err) {
@@ -90,7 +90,7 @@ export const Navbar = () => {
         <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
       }
       type="search"
-      onChange={(e) => setSearchQuery(e.target.value)} 
+      onChange={(e) => setSearchQuery(e.target.value)}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           handleSearch();
@@ -101,7 +101,12 @@ export const Navbar = () => {
 
   return (
     <>
-      <NextUINavbar maxWidth="xl" position="sticky" isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+      <NextUINavbar
+        isMenuOpen={isMenuOpen}
+        maxWidth="xl"
+        position="sticky"
+        onMenuOpenChange={setIsMenuOpen}
+      >
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit">
             <NextLink
@@ -174,8 +179,7 @@ export const Navbar = () => {
             startContent={<SpotifyLogo className="text-green-500" />}
             variant="flat"
             onPress={() => {
-              window.location.href =
-                LOGIN_URL;
+              window.location.href = `${LOGIN_URL}`;
             }}
           >
             Sign in / Sign up
@@ -186,7 +190,7 @@ export const Navbar = () => {
           {isAuthenticated ? <NavbarMenuToggle /> : null}
         </NavbarContent>
 
-        <NavbarMenu >
+        <NavbarMenu>
           <div className="mx-4 mt-2 flex flex-col gap-4">
             {isAuthenticated && pathname !== "/search" ? (
               <NavbarMenuItem>
@@ -228,10 +232,14 @@ export const Navbar = () => {
             </Button>
 
             {isAuthenticated ? (
-              <Button color="danger" variant="flat" onPress={() => {
-                handleLogout();
-    setIsMenuOpen();
-              }}>
+              <Button
+                color="danger"
+                variant="flat"
+                onPress={() => {
+                  handleLogout();
+                  setIsMenuOpen();
+                }}
+              >
                 Logout
               </Button>
             ) : (
@@ -243,8 +251,7 @@ export const Navbar = () => {
                 startContent={<SpotifyLogo className="text-green-500" />}
                 variant="flat"
                 onPress={() => {
-                  window.location.href =
-                    LOGIN_URL;
+                  window.location.href = `${LOGIN_URL}`;
                   setIsMenuOpen();
                 }}
               >
