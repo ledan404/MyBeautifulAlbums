@@ -2,9 +2,9 @@ import { jwtDecode } from "jwt-decode";
 
 const IS_LOCAL = process.env.IS_LOCAL === "true";
 
-const BASE_URL = process.env.BASE_URL
-const LOGIN_URL = process.env.LOGIN_URL
-
+const BASE_URL = "https://mybeautifulalbums.onrender.com";
+const LOGIN_URL =
+  "https://accounts.spotify.com/authorize?response_type=code&client_id=9d5a71e1bdd543618b045210f884cef8&redirect_uri=https://my-beautiful-albums.vercel.app/callback/&scope=user-library-read user-read-private user-read-email";
 
 interface TokenData {
   jwt_access_token: string;
