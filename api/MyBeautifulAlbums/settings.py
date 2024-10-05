@@ -23,10 +23,7 @@ SPOTIFY_REDIRECT_URI = os.getenv("SPOTIFY_REDIRECT_URI")
 TURSO_URI = os.getenv("TURSO_URI")
 TURSO_API_KEY = os.getenv("TURSO_API_KEY")
 is_local = os.getenv("IS_LOCAL")
-if is_local:
-    DEBUG = True
-else:
-    DEBUG = False
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -79,20 +76,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "MyBeautifulAlbums.wsgi.application"
 
-if is_local:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "libsql.db.backends.sqlite3",
+        "NAME": f"{TURSO_URI}?authToken={TURSO_API_KEY}",
     }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "libsql.db.backends.sqlite3",
-            "NAME": f"{TURSO_URI}?authToken={TURSO_API_KEY}",
-        }
-    }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
