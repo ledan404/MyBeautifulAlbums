@@ -23,7 +23,7 @@ SPOTIFY_REDIRECT_URI = os.getenv("SPOTIFY_REDIRECT_URI")
 TURSO_URI = os.getenv("TURSO_URI")
 TURSO_API_KEY = os.getenv("TURSO_API_KEY")
 is_local = os.getenv("IS_LOCAL")
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
